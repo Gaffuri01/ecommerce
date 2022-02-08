@@ -1,0 +1,12 @@
+yarn add express
+yarn add typescript -D
+yarn add ts-node-dev -D
+yarn add @types/express -D
+
+yarn server   Inicializa o projeto
+
+yarn add typeorm mysql reflect-metadata
+
+Criar uma database no banco depois inicializar as migration
+
+yarn typeorm migration:run
