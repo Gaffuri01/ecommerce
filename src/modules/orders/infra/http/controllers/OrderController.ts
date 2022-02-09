@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import FindOrderByIdService from "../../../services/FindOrderByIdSevice";
+import FindOrderByClientIdService from "../../../../orders/services/FindOrderByClientService";
 import CreateOrderService from "../../../services/CreateOrderSevice";
 import FindAllOrdersService from "../../../services/FindAllOrdersService";
 import UpdateOrderService from "../../../services/UpdateorderService";
@@ -12,7 +12,7 @@ class OrderController {
 
     const createOrderService = new CreateOrderService();
 
-    const product = await createOrderService.execute(data, prod);
+    const product = await createOrderService.execute(data);
 
     return response.json(product);
   }
@@ -20,14 +20,14 @@ class OrderController {
   async findById(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    const findOrderService = new FindOrderByIdService();
+    const findOrderService = new FindOrderByClientIdService();
 
     const product = await findOrderService.execute(Number(id));
 
     return response.json(product);
   }
 
-  async findOrderById(request: Request, response: Response): Promise<Response> {
+  async findOrderByClientId(request: Request, response: Response): Promise<Response> {
     const { client_id } = request.params;
 
     const findOrderByClientService = new FindOrderByClientService();

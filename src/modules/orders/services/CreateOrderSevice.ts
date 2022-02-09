@@ -4,11 +4,13 @@ import IProductDTO from "../../products/dtos/IProductDTO";
 import Order from "../infra/typeorm/entities/Order";
 import OrderRepository from "../infra/typeorm/repositories/OrderRepository";
 import FindProductByIdSevice from "../../products/services/FindProductByIdSevice";
+import UpProductSevice from "../../products/services/UpdateProductService";
 
 export default class CreateOrderService {
   public async execute(data: IOrderDTO): Promise<Order> {
     const orderRepository = new OrderRepository();
     const productService = new FindProductByIdSevice();
+    const upProductSevice = new UpProductSevice();
     let soma = 0 ;
 
     /* ---------- Tendo a necessidade de pelo menos um produto ----------*/
@@ -39,13 +41,28 @@ export default class CreateOrderService {
       /* ---------- Somando o total da compra ----------*/
       soma += data.pedido_produtos[i].quantidade * produto.preco;
     }
-
+    
     const data_nova = {
       ...data,
       valor: soma
     }
-
+    
     const order = await orderRepository.create(data_nova);
+    
+    /* ---------- Alterando a quantiade no banco ----------*/
+    data.pedido_produtos.forEach( async produtos=> {
+      let produtoBanco = await productService.execute(produtos.produto_id);
+
+      let produtoUpdate = {
+        id: produtoBanco.id,
+        nome: produtoBanco.nome,
+        quantidade: (produtoBanco.quantidade - produtos.quantidade),
+        preco: produtoBanco.preco,
+        category_id: produtoBanco.categoria_id,
+      }
+
+      upProductSevice.execute(produtoUpdate);
+    });
 
     return order;
   }

@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import CreateCategoriaService from "../../../services/CreateCategoriaService";
 import FindAllCategoriesService from "../../../services/FindAllCategoriesService";
 import FindCategoryByIdService from "../../../services/FindCategoryByIdService";
-import Category from "../../typeorm/entities/Category";
 
 class CategoriesController {
   async create(request: Request, response: Response): Promise<Response> {

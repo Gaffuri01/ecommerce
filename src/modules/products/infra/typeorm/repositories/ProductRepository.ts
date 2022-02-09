@@ -2,6 +2,7 @@ import IProductDTO from "../../../dtos/IProductDTO";
 import IProductRepository from "../../../repositories/IProductRepository";
 import { getRepository, Repository } from "typeorm";
 import Product from "../entities/Product";
+import AppError from "shared/errors/AppErrors";
 
 export default class ProductRepository implements IProductRepository {
   private ormRepository: Repository<Product>;

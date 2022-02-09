@@ -2,7 +2,7 @@ import AppError from "../../../shared/errors/AppErrors";
 import Order from "../infra/typeorm/entities/Order";
 import OrderRepository from "../infra/typeorm/repositories/OrderRepository";
 
-export default class FindOrderByIdService {
+export default class findOrderByClientIdService {
   public async execute(id: number): Promise<Order> {
     const orderRepository = new OrderRepository();
 

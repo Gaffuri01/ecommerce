@@ -25,8 +25,12 @@ export default class OrderRepository implements IOrderRepository {
       .getOne();
   }
 
-  async findOrderById(id: number): Promise<Order | undefined> {
-    const client = await this.ormRepository.findOne({where: {client_id: id}});
+  async findOrderByClientId(id: number): Promise<Order[] | undefined> {
+    console.log("---------------------------------"+id+"---------------------------------");
+    
+    const client = await this.ormRepository.createQueryBuilder("order").where("order.cliente_id = :id", {id}).getMany();
+    
+    //findOne({where: {client_id: id}});
 
     return client;
   }

@@ -1,6 +1,4 @@
 import { DeleteResult } from "typeorm";
-import AppError from "../../../shared/errors/AppErrors";
-import Category from "../infra/typeorm/entities/Category";
 import CategoryRepository from "../infra/typeorm/repositories/CategoryRepository";
 import FindCategoryByIdService from "./FindCategoryByIdService";
 

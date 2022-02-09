@@ -5,6 +5,6 @@ export default interface IOrderRepository {
   create(data: IOrderDTO): Promise<Order>;
   list(): Promise<Order[]>;
   findById(id: number): Promise<Order | undefined>;
-  findOrderById(id: number): Promise<Order | undefined>;
+  findOrderByClientId(id: number): Promise<Order[] | undefined>;
   update(data: IOrderDTO): Promise<Order>;
 }

@@ -13,6 +13,7 @@ export default class FindProductByIdService {
       throw new AppError("produto não encontrado");
     }
 
+    console.log(product)
     return product;
   }
 }

@@ -5,7 +5,7 @@ const routes = Router();
 
 routes.post("/", OrderController.create);
 routes.get("/:id", OrderController.findById);
-routes.get("/client/:id", OrderController.findOrderById);
+routes.get("/client/:id", OrderController.findOrderByClientId);
 routes.get("/", OrderController.list);
 
 
