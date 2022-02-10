@@ -1,6 +1,5 @@
 import AppError from "../../../shared/errors/AppErrors";
 import IOrderDTO from "../dtos/IOrderDTO";
-import IProductDTO from "../../products/dtos/IProductDTO";
 import Order from "../infra/typeorm/entities/Order";
 import OrderRepository from "../infra/typeorm/repositories/OrderRepository";
 import FindProductByIdSevice from "../../products/services/FindProductByIdSevice";
@@ -19,9 +18,10 @@ export default class CreateOrderService {
     }
 
     /* ---------- Quantidade de clientes por pedido ----------*/
-    // if(data.client_id === null){
-    //   throw new AppError("Deve conter 1 cliente!");
-    // } 
+    if(typeof data.client_id === undefined){
+      throw new AppError("Deve conter 1 cliente!");
+    } 
+    console.log("------------------------------"+typeof data.client_id+"------------------------------");
 
     /* ---------- A quantidade dos produtos deve ser superior a 0 ----------*/
     for(var i = 0; i < data.pedido_produtos.length; i++){

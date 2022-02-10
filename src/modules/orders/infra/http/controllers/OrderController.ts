@@ -19,6 +19,7 @@ class OrderController {
 
   async findById(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
+    //const num = Number(id);
 
     const findOrderService = new FindOrderByClientIdService();
 
@@ -32,7 +33,8 @@ class OrderController {
 
     const findOrderByClientService = new FindOrderByClientService();
 
-    const product = await findOrderByClientService.execute(Number(client_id));
+    const aux = parseInt(client_id);
+    const product = await findOrderByClientService.execute(aux);
 
     return response.json(product);
   }

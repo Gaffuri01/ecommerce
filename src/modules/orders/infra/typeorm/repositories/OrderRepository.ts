@@ -2,7 +2,6 @@ import IOrderDTO from "../../../dtos/IOrderDTO";
 import IOrderRepository from "../../../repositories/IOrderRepository";
 import { getRepository, Repository } from "typeorm";
 import Order from "../entities/Order";
-import ProductRepository from "modules/products/infra/typeorm/repositories/ProductRepository";
 
 export default class OrderRepository implements IOrderRepository {
   private ormRepository: Repository<Order>;
@@ -26,11 +25,10 @@ export default class OrderRepository implements IOrderRepository {
   }
 
   async findOrderByClientId(id: number): Promise<Order[] | undefined> {
-    console.log("---------------------------------"+id+"---------------------------------");
+    //console.log("---------------------------------"+id+"---------------------------------");
     
-    const client = await this.ormRepository.createQueryBuilder("order").where("order.cliente_id = :id", {id}).getMany();
-    
-    //findOne({where: {client_id: id}});
+    const client = await this.ormRepository
+      .createQueryBuilder("order").where("order.cliente_id = :id", {id}).getMany();
 
     return client;
   }
