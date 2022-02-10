@@ -7,7 +7,7 @@ routes.post("/", OrderController.create);
 
 routes.get("/", OrderController.list);
 routes.get("/:id", OrderController.findById);
-routes.get("/client/:client_id", OrderController.findOrderByClientId);
+routes.get("/client/:cliente_id", OrderController.findOrderByClientId);
 
 
 export default routes;

@@ -29,11 +29,11 @@ class OrderController {
   }
 
   async findOrderByClientId(request: Request, response: Response): Promise<Response> {
-    const { client_id } = request.params;
+    const { cliente_id } = request.params;
 
     const findOrderByClientService = new FindOrderByClientService();
 
-    const aux = parseInt(client_id);
+    const aux = parseInt(cliente_id);
     const product = await findOrderByClientService.execute(aux);
 
     return response.json(product);

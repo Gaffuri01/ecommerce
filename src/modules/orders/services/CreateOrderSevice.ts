@@ -18,10 +18,10 @@ export default class CreateOrderService {
     }
 
     /* ---------- Quantidade de clientes por pedido ----------*/
-    if(typeof data.client_id === undefined){
+    if(!data.cliente_id){
       throw new AppError("Deve conter 1 cliente!");
     } 
-    console.log("------------------------------"+typeof data.client_id+"------------------------------");
+    console.log("------------------------------"+typeof data.cliente_id+"------------------------------");
 
     /* ---------- A quantidade dos produtos deve ser superior a 0 ----------*/
     for(var i = 0; i < data.pedido_produtos.length; i++){
